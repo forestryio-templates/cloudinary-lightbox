@@ -1,0 +1,31 @@
+{
+  "name": "cloudinary-lightbox",
+  "version": "0.1.0",
+  "description": "Create an optimized lightbox for your site's images using Cloudinary",
+  "main": "index.js",
+  "author": "forestryio",
+  "license": "MIT",
+  "scripts": {
+    "start": "npm run develop",
+    "prebuild": "npm run clean",
+    "build": "parcel build src/index.html src/index.ts --detailed-report",
+    "predevelop": "npm run clean",
+    "develop": "parcel src/index.html",
+    "clean": "rimraf ./dist",
+    "contributors:add": "all-contributors add",
+    "contributors:generate": "all-contributors generate"
+  },
+  "dependencies": {
+    "all-contributors-cli": "^5.2.1",
+    "babel-polyfill": "^6.26.0",
+    "cloudinary-core": "^2.5.0",
+    "jest": "^23.3.0",
+    "mustache": "^2.3.0",
+    "parcel-bundler": "^1.9.4",
+    "parcel-plugin-mustache": "^0.0.2",
+    "rimraf": "^2.6.2"
+  },
+  "devDependencies": {
+    "typescript": "^2.9.2"
+  }
+}
