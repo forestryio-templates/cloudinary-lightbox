@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <title>Development Entrypoint</title>
-        <link href="./theme/template.css" rel="stylesheet" type="text/css">
+        <link href="../theme/template.css" rel="stylesheet" type="text/css">
         <style type="text/css">
             img {
                 max-width: 100%;
@@ -11,17 +11,19 @@
         </style>
     </head>
     <body>
-        <img src="projector.jpg" srcset="projector.jpg 320w,projector.jpg 480w,projector.jpg 760w,projector.jpg 960w,projector.jpg 1024w,projector.jpg 1200w,projector.jpg 1400w,projector.jpg 1920w" alt="Example Image" data-transforms="dpr_auto" />
-        <div id="parent" data-srcset="320w,480w,760w,960w,1024w,1200w,1400w,1920w" data-transforms="dpr_auto">
+        <img src="projector.jpg" alt="Example Image" data-transforms="dpr_auto" />
+        <div id="parent" data-transforms="dpr_auto">
             <img src="projector.jpg" alt="Example Image"  />
         </div>
-        <script src="./index.ts"></script>
+        <script src="../index.ts"></script>
         <script>
             var cloudinaryLightbox = CloudinaryLightbox({
-                cloudName: "forestry-demo"
+                cloudName: "forestry-demo",
+                selectors: "body > img"
             })
             var parentedLightbox = CloudinaryLightbox({
                 cloudName: "forestry-demo",
+                selectors: "#parent img",
                 wrapperSelectors: "#parent",
                 attributes: {
                     srcset: "data-srcset"

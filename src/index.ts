@@ -1,4 +1,5 @@
 import "babel-polyfill";
+import "./utils/closest.polyfill"
 import Config from "./core/config"
 import { ImageElement } from "./core/imageGenerator"
 import KeyMap from './core/keymap';
@@ -18,28 +19,21 @@ export default class CloudinaryLightbox {
     }
 
     getImages(selectors: string, wrapperSelectors: string) {
-        const images = []
+        let images: ImageElement[] = []
 
-        if (typeof wrapperSelectors !== "undefined") {
-            const parents = document.querySelectorAll(wrapperSelectors)
-
-            parents.forEach(parent => {
-                const children = parent.querySelectorAll(selectors)
+        const nodes = document.querySelectorAll(selectors)
     
-                children.forEach((child: ImageElement) => {
-                    child.wrapper = parent
-                    images.push(child)
-                })
-            })
-        } else {
-            const nodes = document.querySelectorAll(selectors)
-        
-            nodes.forEach(node => {
-                images.push(node)
-            })
-        }
+        nodes.forEach((node: ImageElement) => {
+            if (typeof wrapperSelectors !== "undefined") {
+                const wrapper = node.closest(wrapperSelectors)
+                node.cloudinaryWrapper = wrapper
+                console.log(node.cloudinaryWrapper)
+            }
 
-        images.forEach(image => {
+            images.push(node)
+        })
+
+        images.forEach((image: ImageElement) => {
             image.setAttribute("data-cloudinary-lightbox", "")
         })
         

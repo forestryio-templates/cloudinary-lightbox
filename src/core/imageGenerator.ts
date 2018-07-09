@@ -1,7 +1,7 @@
 import Config from "./config"
 
 export interface ImageElement extends Element {
-    wrapper: Element
+    cloudinaryWrapper: Element
 }
 
 export interface Transform {
@@ -31,11 +31,10 @@ export default class ImageGenerator {
     constructor(image: ImageElement, config: Config) {
         this.image = image
         this.config = config
-        this.src = image.getAttribute("src")
+        this.src = image.getAttribute(this.config.attributes.src)
         this.alt = image.getAttribute("alt")
         this.sourceHtml = image.innerHTML
         this.transforms = this.getTransforms()
-        this.srcset = this.getSrcset()
     }
 
     private createURL(src: string): URL {
@@ -98,15 +97,15 @@ export default class ImageGenerator {
         const key = this.config.attributes.transforms
         const localTransforms = this.image.getAttribute(key)
 
-        if (typeof this.image.wrapper !== "undefined") {
-            wrapperTransforms = this.image.wrapper.getAttribute(key)
+        if (typeof this.image.cloudinaryWrapper !== "undefined") {
+            wrapperTransforms = this.image.cloudinaryWrapper.getAttribute(key)
         }
 
         if (typeof localTransforms !== "undefined" && localTransforms !== null) {
             transforms = transforms.concat(localTransforms.split(","))
         }
 
-        if (typeof wrapperTransforms !== "undefined"&& wrapperTransforms !== null) {
+        if (typeof wrapperTransforms !== "undefined" && wrapperTransforms !== null) {
             transforms = transforms.concat(wrapperTransforms.split(","))
         }
 
@@ -122,45 +121,9 @@ export default class ImageGenerator {
         })
     }
 
-    private getSrcset() {
-        let sets = []
-        let wrapperSets
-        const key = this.config.attributes.srcset
-        const localSets = this.image.getAttribute("srcset")
-
-        if (typeof this.image.wrapper !== "undefined") {
-            wrapperSets = this.image.wrapper.getAttribute(key)
-        }
-
-        if (typeof localSets !== "undefined" && localSets !== null) {
-            sets = sets.concat(localSets.split(","))
-        }
-
-        if (typeof wrapperSets !== "undefined" && wrapperSets !== null) {
-            sets = sets.concat(wrapperSets.split(","))
-        }
-
-        return sets.map(set => {
-            const arr = set.split(" ")
-            const src = arr.length > 1 ? arr[0] : null
-            const width = arr.length > 1 ? arr[1] : arr[0]
-
-            return {
-                src: src,
-                width: width.replace("w", "")
-            }
-        })
-    }
-
-    private createCloudinaryUrl(imagePath: string, width?: number|string) {
+    private createCloudinaryUrl(imagePath: string) {
         const mode = this.shouldBeUpload(imagePath) ? "upload" : "fetch"
-        const transforms = this.transforms.map(transform => {
-            if (transform.type === "w" && width !== "undefined") {
-                return
-            }
-
-            return `${transform.type}_${transform.value}`
-        }).concat([`w_${width}`])
+        const transforms = this.transforms.map(transform => `${transform.type}_${transform.value}`)
         const path = `${mode}/${transforms.join(",")}/${imagePath}`
         const url = `${this.config.cloudinaryUrl}${path}`
 
@@ -168,7 +131,7 @@ export default class ImageGenerator {
     }
 
     private shouldBeUpload(path: string) {
-        if (this.config.allowFetch !== true) {
+        if (this.config.allowFetch === false) {
             return true
         } else if (path.indexOf("http://") > -1) {
             return false
@@ -181,27 +144,11 @@ export default class ImageGenerator {
 
     public createImage() {
         const image = this.image
+        const srcURL = this.createURL(this.src)
+        const srcPath = this.getImagePath(srcURL.pathname)
+        const cloudinarySrc = this.createCloudinaryUrl(srcPath)
 
-        if (this.config.allowFetch) {
-            const srcURL = this.createURL(this.src)
-            const srcPath = this.getImagePath(srcURL.pathname)
-            const cloudinarySrc = this.createCloudinaryUrl(srcPath)
-
-            image.setAttribute("src", cloudinarySrc)
-
-            if (this.srcset.length > 0) {
-                const cloudinarySrcset = this.srcset.map(set => {
-                    const src = set.src !== null ? set.src : this.src
-                    const setURL = this.createURL(src)
-                    const setPath = this.getImagePath(setURL.pathname)
-                    const cloudinarySrc = this.createCloudinaryUrl(setPath, set.width)
-
-                    return `${cloudinarySrc} ${set.width}w`
-                }).join(", ")
-
-                image.setAttribute("srcset", cloudinarySrcset)
-            }
-        }
+        image.setAttribute("src", cloudinarySrc)
 
         return image
     }

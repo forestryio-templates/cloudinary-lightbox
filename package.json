@@ -8,9 +8,9 @@
   "scripts": {
     "start": "npm run develop",
     "prebuild": "npm run clean",
-    "build": "parcel build src/index.html src/index.ts --detailed-report",
+    "build": "parcel build src/tests/index.html src/index.ts --detailed-report",
     "predevelop": "npm run clean",
-    "develop": "parcel src/index.html",
+    "develop": "parcel src/tests/index.html",
     "clean": "rimraf ./dist",
     "contributors:add": "all-contributors add",
     "contributors:generate": "all-contributors generate"

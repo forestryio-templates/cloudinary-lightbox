@@ -1,6 +1,5 @@
 export interface Attributes {
     src: string,
-    srcset: string,
     transforms: string,
 }
 
@@ -29,7 +28,6 @@ export class Config {
     public allowFetch: boolean = true
     public attributes: Attributes = {
         src: "src",
-        srcset: "srcset",
         transforms: "data-transforms"
     }
     public cloudinary: any

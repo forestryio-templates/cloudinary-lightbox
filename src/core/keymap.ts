@@ -1,5 +1,5 @@
 import Config from './config';
-import ImageGenerator from "./imageGenerator"
+import {default as ImageGenerator, ImageElement} from "./imageGenerator"
 import TemplateRenderer from './templateRenderer';
 
 /**
@@ -10,11 +10,11 @@ export default class KeyMap {
     focusableElements : string = "a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not" +
             "([disabled]), button:not([disabled]), iframe, object, embed, *[tabindex], *[cont" +
             "enteditable]"
-    images : Element[]
+    images : ImageElement[]
     lightbox : Element[] = []
     templateRenderer : TemplateRenderer
 
-    constructor(config : Config, images : Element[], templateRenderer : TemplateRenderer) {
+    constructor(config : Config, images : ImageElement[], templateRenderer : TemplateRenderer) {
         this.config = config
         this.images = images
         this.templateRenderer = templateRenderer
@@ -31,8 +31,6 @@ export default class KeyMap {
      * Adds the lightbox element to the page
      */
     private addLightbox(image) {
-        this.removeLightbox()
-
         const template = this
             .templateRenderer
             .renderTemplate(image.outerHTML)
@@ -70,11 +68,14 @@ export default class KeyMap {
         e.preventDefault()
 
         const imageHtml = image.outerHTML
-        const clone = this.templateRenderer.createElementFromTemplate(imageHtml)[0]
-              clone.wrapper = image.wrapper
+        const clone = this
+            .templateRenderer
+            .createElementFromTemplate(imageHtml)[0]
+        clone.cloudinaryWrapper = image.cloudinaryWrapper
         const generatedImage = new ImageGenerator(clone, this.config)
         const lightboxImage = generatedImage.createImage()
 
+        this.removeLightbox()
         this.addLightbox(lightboxImage)
     }
 
