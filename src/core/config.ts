@@ -41,7 +41,7 @@ export class Config {
     public selectors: string = "img"
     public sizes: string = "100vw"
     public template: string
-    public transforms: string = "c_scale,w_auto:breakpoints,dpr_auto"
+    public transforms: string = "c_scale,w_auto:100,dpr_auto"
     public wrapperSelectors
 
     constructor(config: ConfigObject) {
