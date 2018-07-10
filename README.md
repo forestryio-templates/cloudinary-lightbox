@@ -60,10 +60,18 @@ When instantiating the plugin, the following options are available:
 | `secure` | `boolean` | Whether to use `https` protocol, even if the viewed webpage is `http` | `true` |
 | `wrapperSelectors` | `string` | A comma delimited list of valid CSS selectors to source transforms from. Useful for markdown content. | `undefined` |
 | `template` | `string` | A valid mustachejs template for rendering the lightbox. Use the `{{{ image }}}` variable to place the generated image. | [Default template](./src/theme/template.mustache) |
+| `transforms` | `string` | The default transforms to apply if none are set using `attributes.transforms` | `w_auto,c_scale,dpr_auto` |
 
 ### Custom Styling (CSS)
 
 If you want to customize the CSS for the lightbox, feel free to exclude or extend the [very basic default theme](./src/theme/template.css) with your own CSS.
+
+### Client Hints
+By default, this plugin is setup to deliver the best image possible via [client hints](https://cloudinary.com/documentation/responsive_images#automating_responsive_images_with_client_hints). To enable this functionality, add the following to the `<head>` of your page:
+
+```
+<meta http-equiv="Accept-CH" content="DPR, Viewport-Width, Width">
+```
 
 ## Contributors
 

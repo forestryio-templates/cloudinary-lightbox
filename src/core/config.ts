@@ -18,6 +18,7 @@ export interface ConfigObject {
     secure?: boolean,
     selectors: string,
     template?: string,
+    transforms?: string,
     wrapperSelectors?: string
 }
 
@@ -38,7 +39,9 @@ export class Config {
     public privateCdn: boolean = false
     public secure: boolean = true
     public selectors: string = "img"
+    public sizes: string = "100vw"
     public template: string
+    public transforms: string = "c_scale,w_auto:breakpoints,dpr_auto"
     public wrapperSelectors
 
     constructor(config: ConfigObject) {
@@ -74,6 +77,10 @@ export class Config {
 
         if (typeof config.template !== "undefined") {
             this.template = config.template
+        }
+
+        if (typeof config.transforms !== "undefined") {
+            this.transforms = config.transforms
         }
 
         if (typeof config.wrapperSelectors !== "undefined") {

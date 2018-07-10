@@ -157,6 +157,7 @@ export default class ImageGenerator {
         }
 
         image.setAttribute("src", cloudinarySrc)
+        image.setAttribute("sizes", this.config.sizes)
 
         return image
     }
