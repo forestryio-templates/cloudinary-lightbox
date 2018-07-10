@@ -11,7 +11,7 @@
   "scripts": {
     "start": "npm run develop",
     "prebuild": "npm run clean",
-    "build": "parcel build src/index.html src/cloudinaryLightbox.ts --detailed-report",
+    "build": "parcel build src/cloudinaryLightbox.ts --detailed-report && parcel build src/index.html --out-dir example",
     "predevelop": "npm run clean",
     "develop": "parcel src/index.html",
     "clean": "rimraf ./dist",
