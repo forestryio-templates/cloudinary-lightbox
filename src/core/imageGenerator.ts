@@ -60,13 +60,13 @@ export default class ImageGenerator {
 
     private getImagePath(pathname: string): string {
         let imagePath = pathname
-        const imagePathIsAbsolute = pathname.indexOf("http") > -1
+        const httpIndex =  pathname.indexOf("http")
+        const imagePathIsAbsolute = httpIndex > -1
         const stripRegex = new RegExp("/[/|./../]*?")
-        const shouldBeUpload = this.shouldBeUpload(imagePath)
 
-        if (imagePathIsAbsolute && !shouldBeUpload) {
-            imagePath = pathname.slice(imagePathIsAbsolute, pathname.length)
-        } else if (!imagePathIsAbsolute) {
+        if (imagePathIsAbsolute) {
+            imagePath = pathname.slice(httpIndex, pathname.length)
+        } else {
             let pathParts = pathname.split("/")
             const uploadIndex = pathParts.indexOf("upload")
             const fetchIndex = pathParts.indexOf("fetch")
@@ -144,10 +144,17 @@ export default class ImageGenerator {
     }
 
     public createImage() {
+        let cloudinarySrc
         const image = this.image
-        const srcURL = this.createURL(this.src)
-        const srcPath = this.getImagePath(srcURL.pathname)
-        const cloudinarySrc = this.createCloudinaryUrl(srcPath)
+
+        if (this.shouldBeUpload(this.src)) {
+            const srcURL = this.createURL(this.src)
+            const srcPath = this.getImagePath(srcURL.pathname)
+            cloudinarySrc = this.createCloudinaryUrl(srcPath)
+        } else {
+            const srcPath = this.getImagePath(this.src)
+            cloudinarySrc = this.createCloudinaryUrl(srcPath)
+        }
 
         image.setAttribute("src", cloudinarySrc)
 
