@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Development Entrypoint</title>
+        <link href="./theme/template.css" rel="stylesheet" type="text/css">
+        <style type="text/css">
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+        </style>
+    </head>
+    <body>
+        <img src="./projector.jpg" alt="Example Image" data-transforms="dpr_auto" />
+        <div id="parent" data-transforms="dpr_auto">
+            <img src="./projector.jpg" alt="Example Image"  />
+        </div>
+        <script src="./cloudinaryLightbox.ts"></script>
+        <script>
+            var cloudinaryLightbox = CloudinaryLightbox({
+                cloudName: "forestry-demo",
+                selectors: "body > img"
+            })
+            var parentedLightbox = CloudinaryLightbox({
+                cloudName: "forestry-demo",
+                selectors: "#parent img",
+                wrapperSelectors: "#parent",
+                attributes: {
+                    srcset: "data-srcset"
+                }
+            })
+        </script>
+    </body>
+</html>
