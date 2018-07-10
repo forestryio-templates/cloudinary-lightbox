@@ -60,6 +60,10 @@ When instantiating the plugin, the following options are available:
 | `wrapperSelectors` | `string` | A comma delimited list of valid CSS selectors to source transforms from. Useful for markdown content. | `undefined` |
 | `template` | `string` | A valid mustachejs template for rendering the lightbox. Use the `{{{ image }}}` variable to place the generated image. | [Default template](./src/theme/template.mustache) |
 
+### Custom Styling (CSS)
+
+If you want to customize the CSS for the lightbox, feel free to exclude or extend the [very basic default theme](./src/theme/template.css) with your own CSS.
+
 ## Contributors
 
 Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds/all-contributors#emoji-key)):
