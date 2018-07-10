@@ -3,7 +3,7 @@ import cloudinaryLightbox from "../dist/cloudinaryLightbox"
 
 test("Expect a valid cname-based cloudinary URL", () => {
     document.body.innerHTML = `
-        <img src="example.jpg" alt="Example" data-transforms="dpr_auto,w_auto">
+        <img src="example.jpg" alt="Example" data-clb-transforms="dpr_auto,w_auto">
     `
 
     const img = document.querySelector("img")

@@ -28,7 +28,7 @@ export class Config {
     public disableFetch: boolean = false
     public attributes: Attributes = {
         src: "src",
-        transforms: "data-transforms"
+        transforms: "data-clb-transforms"
     }
     public cloudinary: any
     public cloudinaryUrl: string
@@ -93,9 +93,14 @@ export class Config {
     }
 
     createCloudinaryURL() {
+        let baseURL
         const protocol = this.secure ? "https://" : "http://"
         const host = this.cname.replace("/", "")
-        const baseURL = `${protocol}${host}/${this.cloudName}/image/`
+        if (this.privateCdn === true && this.cname === "res.cloudinary.com") {
+            baseURL = `${protocol}${this.cloudName}-${host}/image/`
+        } else {
+            baseURL = `${protocol}${host}/${this.cloudName}/image/`
+        }
 
         return baseURL
     }

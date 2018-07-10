@@ -3,7 +3,7 @@ import cloudinaryLightbox from "../dist/cloudinaryLightbox"
 
 test("Expect a valid absolute URL", () => {
     document.body.innerHTML = `
-        <img src="https://example.com/images/example.jpg" alt="Example" data-transforms="dpr_auto,w_auto">
+        <img src="https://example.com/images/example.jpg" alt="Example" data-clb-transforms="dpr_auto,w_auto">
     `
 
     const img = document.querySelector("img")

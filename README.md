@@ -53,7 +53,8 @@ When instantiating the plugin, the following options are available:
 | Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | `selectors` | `string` | A comma delimited list of valid CSS selectors to target specific images | `img` |
-| `attributes.transforms` | `string` | THe HTML attribute to search for Cloudinary transform values on. Must be a comma delimited list of valid Cloudinary transforms. | `data-transforms` |
+| `attributes.transforms` | `string` | The HTML attribute to search for the image `src` value from. | `src` |
+| `attributes.transforms` | `string` | The HTML attribute to search for Cloudinary transform values on. Must be a comma delimited list of valid Cloudinary transforms. | `data-clb-transforms` |
 | `cname` | `string` | The domain name that Cloudinary URLs should be constructed with. | `res.cloudinary.com` |
 | `privateCdn` | `boolean` | Whether a private CDN is being used. _For advanced tier Cloudinary users only_ | `false` |
 | `secure` | `boolean` | Whether to use `https` protocol, even if the viewed webpage is `http` | `true` |
