@@ -13,8 +13,6 @@ test("Expect a valid absolute URL", () => {
 
     img.click()
 
-    console.log(document.body)
-
     const lightboxImg = document.querySelector("cloudinaryLightbox0 img")
     const toCompare = lightboxImg.getAttribute("src")
     const expected = "https:/res.cloudinary.com/example-cloud/image/fetch/dpr_auto,w_auto/https://example.com/images/example.jpg"

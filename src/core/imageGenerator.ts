@@ -110,6 +110,10 @@ export default class ImageGenerator {
             transforms = transforms.concat(wrapperTransforms.split(","))
         }
 
+        if (transforms.length === 0) {
+            transforms = transforms.concat(this.config.transforms.split(","))
+        }
+
         return transforms.map(transform => {
             const arr = transform.split("_")
             const type = arr[0]

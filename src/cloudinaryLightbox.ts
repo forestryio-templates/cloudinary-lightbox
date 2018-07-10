@@ -27,7 +27,6 @@ export default class CloudinaryLightbox {
             if (typeof wrapperSelectors !== "undefined") {
                 const wrapper = node.closest(wrapperSelectors)
                 node.cloudinaryWrapper = wrapper
-                console.log(node.cloudinaryWrapper)
             }
 
             images.push(node)
