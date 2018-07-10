@@ -11,13 +11,13 @@
   "scripts": {
     "start": "npm run develop",
     "prebuild": "npm run clean",
-    "build": "parcel build src/cloudinaryLightbox.ts --detailed-report && parcel build src/index.html --out-dir docs --public-url /cloudinary-lightbox/",
+    "build": "parcel build src/index.html --out-dir example",
     "predevelop": "npm run clean",
     "develop": "parcel src/index.html",
     "clean": "rimraf ./dist",
     "contributors:add": "all-contributors add",
     "contributors:generate": "all-contributors generate",
-    "prepare": "npm run build",
+    "prepare": "parcel build src/cloudinaryLightbox.ts --detailed-report",
     "pretest": "npm run build",
     "test": "jest"
   },
