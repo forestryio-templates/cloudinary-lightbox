@@ -80,7 +80,7 @@ export class Config {
             this.wrapperSelectors = config.wrapperSelectors
         }
 
-        this.loadCloudinary()
+        //this.loadCloudinary()
         this.cloudinaryUrl = this.createCloudinaryURL()
     }
 

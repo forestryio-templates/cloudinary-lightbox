@@ -1,4 +1,4 @@
-# forestry-cloudinary-lightbox
+# Cloudinary Lightbox
 
 A JavaScript widget for auto-generating responsive, accessible lightboxes using Cloudinary.
 
@@ -53,12 +53,11 @@ When instantiating the plugin, the following options are available:
 | Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | `selectors` | `string` | A comma delimited list of valid CSS selectors to target specific images | `img` |
-| `attributes.srcset` | `string` | The HTML attribute to search for `srcset` values on. Must be a comma delimited list of valid srcsets. | `srcset` |
 | `attributes.transforms` | `string` | THe HTML attribute to search for Cloudinary transform values on. Must be a comma delimited list of valid Cloudinary transforms. | `data-transforms` |
 | `cname` | `string` | The domain name that Cloudinary URLs should be constructed with. | `res.cloudinary.com` |
 | `privateCdn` | `boolean` | Whether a private CDN is being used. _For advanced tier Cloudinary users only_ | `false` |
 | `secure` | `boolean` | Whether to use `https` protocol, even if the viewed webpage is `http` | `true` |
-| `wrapperSelectors` | `string` | A comma delimited list of valid CSS selectors to target specific images. Restricts `selectors` to valid `wrapperSelectors`. | `undefined` |
+| `wrapperSelectors` | `string` | A comma delimited list of valid CSS selectors to source transforms from. Useful for markdown content. | `undefined` |
 | `template` | `string` | A valid mustachejs template for rendering the lightbox. Use the `{{{ image }}}` variable to place the generated image. | [Default template](./src/theme/template.mustache) |
 
 ## Contributors
