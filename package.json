@@ -1,6 +1,6 @@
 {
   "name": "cloudinary-lightbox",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Create an optimized lightbox for your site's images using Cloudinary",
   "main": "./dist/index.js",
   "files": [
