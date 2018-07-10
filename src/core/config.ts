@@ -9,7 +9,7 @@ export interface Partial {
 }
 
 export interface ConfigObject {
-    allowFetch?: boolean,
+    disableFetch?: boolean,
     attributes?: Attributes,
     cloudName: string,
     cname?: string,
@@ -25,7 +25,7 @@ export interface ConfigObject {
  * Initializes the config for the plugin
  */
 export class Config {
-    public allowFetch: boolean = true
+    public disableFetch: boolean = false
     public attributes: Attributes = {
         src: "src",
         transforms: "data-transforms"
@@ -44,8 +44,8 @@ export class Config {
     constructor(config: ConfigObject) {
         this.cloudName = config.cloudName
 
-        if (typeof config.allowFetch !== "undefined") {
-            this.allowFetch = config.allowFetch
+        if (typeof config.disableFetch !== "undefined") {
+            this.disableFetch = config.disableFetch
         }
 
         if (typeof config.attributes !== "undefined") {

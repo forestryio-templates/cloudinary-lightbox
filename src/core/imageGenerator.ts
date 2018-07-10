@@ -60,12 +60,13 @@ export default class ImageGenerator {
 
     private getImagePath(pathname: string): string {
         let imagePath = pathname
-        const imagePathStart = pathname.indexOf("http")
+        const imagePathIsAbsolute = pathname.indexOf("http") > -1
         const stripRegex = new RegExp("/[/|./../]*?")
+        const shouldBeUpload = this.shouldBeUpload(imagePath)
 
-        if (imagePathStart > -1) {
-            imagePath = pathname.slice(imagePathStart, pathname.length)
-        } else {
+        if (imagePathIsAbsolute && !shouldBeUpload) {
+            imagePath = pathname.slice(imagePathIsAbsolute, pathname.length)
+        } else if (!imagePathIsAbsolute) {
             let pathParts = pathname.split("/")
             const uploadIndex = pathParts.indexOf("upload")
             const fetchIndex = pathParts.indexOf("fetch")
@@ -131,7 +132,7 @@ export default class ImageGenerator {
     }
 
     private shouldBeUpload(path: string) {
-        if (this.config.allowFetch === false) {
+        if (this.config.disableFetch === true) {
             return true
         } else if (path.indexOf("http://") > -1) {
             return false
