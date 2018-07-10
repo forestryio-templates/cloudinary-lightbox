@@ -38,6 +38,9 @@ img[data-cloudinary-lightbox] {
 }
 
 .cloudinary-lightbox-wrapper[aria-modal=true] img {
+    width: auto;
+    max-width: 100%;
+    height: auto;
     position: relative;
     align-self: center;
     z-index: 2;
