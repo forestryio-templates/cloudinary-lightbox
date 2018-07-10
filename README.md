@@ -12,13 +12,13 @@ The quickest way to get started is to add the minified production bundles from t
 Place the following default theme CSS before the closing `</head>` tag:
 
 ```html
-<link href="https://unpkg.com/cloudinary-lightbox@latest/dist/index.css" rel="stylesheet" type="text/css">
+<link href="https://unpkg.com/cloudinary-lightbox@latest/dist/cloudinaryLightbox.css" rel="stylesheet" type="text/css">
 ```
 
 Place the following script before the closing `</body>` tag:
 
 ```html
-<script src="https://unpkg.com/cloudinary-lightbox@latest/dist/index.js"></script>
+<script src="https://unpkg.com/cloudinary-lightbox@latest/dist/cloudinaryLightbox.js"></script>
 <script>
     var CloudinaryLightbox = CloudinaryLightbox({
         cloudName: "YOUR_CLOUD_NAME"
@@ -37,7 +37,7 @@ Then include the files as necessary in your app entrypoint, e.g in Parceljs:
 
 ```
 import CloudinaryLightbox from "cloudinary-lightbox"
-import "cloudinary-lightbox/dist/index.css"
+import "cloudinary-lightbox/dist/cloudinaryLightbox.css"
 
 const cloudinaryLightbox = new CloudinaryLightbox({
     cloudName: "YOUR_CLOUD_NAME"
