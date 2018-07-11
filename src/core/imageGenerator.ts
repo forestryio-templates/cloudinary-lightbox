@@ -62,7 +62,7 @@ export default class ImageGenerator {
         let imagePath = pathname
         const httpIndex =  pathname.indexOf("http")
         const imagePathIsAbsolute = httpIndex > -1
-        const stripRegex = new RegExp("/[/|./../]*?")
+        const stripRegex = new RegExp("/^([/|./../].*)")
 
         if (imagePathIsAbsolute) {
             imagePath = pathname.slice(httpIndex, pathname.length)
@@ -86,7 +86,11 @@ export default class ImageGenerator {
                 }
             }
 
+            console.log(pathParts)
+
             imagePath = pathParts.join("/").replace(stripRegex, "")
+
+            console.log(imagePath)
         }
 
         return imagePath

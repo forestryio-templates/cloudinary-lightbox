@@ -11,9 +11,9 @@
   "scripts": {
     "start": "npm run develop",
     "prebuild": "npm run clean",
-    "build": "parcel build src/index.html --out-dir example --public-url https://cloudinary-lightbox.netlify.com/",
+    "build": "parcel build src/example/index.html --out-dir example --public-url https://cloudinary-lightbox.netlify.com/",
     "predevelop": "npm run clean",
-    "develop": "parcel src/index.html",
+    "develop": "parcel src/example/index.html",
     "clean": "rimraf ./dist",
     "contributors:add": "all-contributors add",
     "contributors:generate": "all-contributors generate",
