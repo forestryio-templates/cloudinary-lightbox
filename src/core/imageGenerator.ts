@@ -146,7 +146,7 @@ export default class ImageGenerator {
             return false
         }
 
-        return false
+        return true
     }
 
     public createImage() {
