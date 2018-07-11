@@ -10,11 +10,12 @@
   "license": "MIT",
   "scripts": {
     "start": "npm run develop",
-    "prebuild": "npm run clean",
+    "prebuild": "npm run clean clear-cache",
     "build": "parcel build src/example/index.html --out-dir example --public-url https://cloudinary-lightbox.netlify.com/",
     "predevelop": "npm run clean",
     "develop": "parcel src/example/index.html",
     "clean": "rimraf ./dist",
+    "clear-cache": "rimraf ./.cache",
     "contributors:add": "all-contributors add",
     "contributors:generate": "all-contributors generate",
     "prepare": "parcel build src/cloudinaryLightbox.ts --detailed-report",
