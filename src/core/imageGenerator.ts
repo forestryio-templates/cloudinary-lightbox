@@ -138,6 +138,8 @@ export default class ImageGenerator {
     private shouldBeUpload(path: string) {
         if (this.config.disableFetch === true) {
             return true
+        } else if (path.indexOf(this.config.cname) > -1) {
+            return true
         } else if (path.indexOf("http://") > -1) {
             return false
         } else if (path.indexOf("https://") > -1) {
