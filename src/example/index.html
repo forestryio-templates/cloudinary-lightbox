@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Accept-CH" content="DPR, Viewport-Width, Width">
+        <title>Cloudinary Lightbox</title>
+        <link href="../theme/template.css" rel="stylesheet" type="text/css">
+        <style type="text/css">
+            body {
+                font-family: 'Helvetica neue', 'Helvetica', sans-serif;
+            }
+
+            .container > img,
+            #parent > img {
+                display: block;
+                max-width: 600px;
+                height: auto;
+                margin: 5rem auto;
+            }
+
+            .container {
+                max-width: 960px;
+                margin: 0 auto;
+            }
+
+            hr {
+                border: none;
+                border-top: 1px solid lightgray;
+                margin: 1rem auto;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Cloudinary Lightbox</h1>
+            <small>A JavaScript widget for auto-generating responsive, accessible lightboxes using Cloudinary. <a href="https://github.com/forestryio-templates/cloudinary-lightbox">View source</a></small>
+            <hr>
+            <img src="./projector.jpg" alt="Example Image" />
+            <img src="https://res.cloudinary.com/forestryio-templates/image/upload/c_scale,w_500,dpr_auto/samples/bike.jpg" alt="Example Image" />
+            <div id="parent" data-clb-transforms="c_scale,w_auto:50,dpr_auto">
+                <img src="https://res.cloudinary.com/forestryio-templates/image/upload/c_scale,w_600,dpr_auto/v1531311419/samples/ecommerce/leather-bag-gray.jpg" alt="Example Image"  />
+            </div>
+        </div>
+        <script src="../cloudinaryLightbox.ts"></script>
+        <script>
+            var cloudinaryLightbox = CloudinaryLightbox({
+                cloudName: "forestryio-templates",
+                selectors: ".container > img"
+            })
+            var parentedLightbox = CloudinaryLightbox({
+                cloudName: "forestryio-templates",
+                selectors: "#parent img",
+                wrapperSelectors: "#parent",
+                attributes: {
+                    srcset: "data-srcset"
+                }
+            })
+        </script>
+    </body>
+</html>
